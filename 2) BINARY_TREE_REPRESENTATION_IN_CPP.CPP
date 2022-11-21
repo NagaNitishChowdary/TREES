@@ -17,5 +17,4 @@ int main()
     root -> left = new node(2) ;
     root -> right = new node(3) ;
     root -> left -> right = new node(4) ;
-    inortder(root) ;
 }
