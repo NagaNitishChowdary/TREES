@@ -1,6 +1,8 @@
 // PROBLEM LINK --- https://leetcode.com/problems/balanced-binary-tree/
 
 // BALENCED BINARY TREE --- FOR EVERY NODE , ABS( HEIGHT(LEFT) - HEIGHT(RIGHT) ) = {0,-1,1} 
+// TIME COMPLEXITY --- O(N)
+// SPACE COMPLEXITY --- O(N) 
 
 /**
  * Definition for a binary tree node.
