@@ -13,6 +13,8 @@ struct node{
 };
 
 vector<vector<int>> verticalTraversal(node *root){
+    // THE MAP DATA STRUCTURE STORES AS THE FOLLOWING
+    //  VERTICAL(...-2,-1,0,1,2...)  AND THEN LEVEL(0,1,2,....) AND THEN VALUES
     map<int,map<int,multiset<int>>> nodes ;
     queue<pair<node*,pair<int,int>>> todo ;
     todo.push({root,{0,0}}) ;
@@ -29,6 +31,8 @@ vector<vector<int>> verticalTraversal(node *root){
     for(auto p:nodes){
         vector<int> col ;
         for(auto q:p.second){
+            // INSERT STATEMENT HAS ARGUMENTS INSERT(POSITION,VALUE) 
+            // IT IS INSERTING THE ELEMENTS OF THE MULTISET AT THE COL VECTOR END
             col.insert(col.end(),q.second.begin(),q.second.end()) ;
         }
         ans.emplace_back(col) ;
