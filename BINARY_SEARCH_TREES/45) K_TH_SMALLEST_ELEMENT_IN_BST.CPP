@@ -14,17 +14,19 @@ struct node{
     }
 };
 
-void inorder1(node *root,vector<int> &inorder){
+
+void inorder1(node *root,int k,int cnt ,vector<int> &inorder){
     if(root == NULL) return ;
-    inorder1(root -> left , inorder) ;
-    inorder.emplace_back(root -> data) ;
-    inorder1(root -> right , inorder) ;
+    if(cnt == k) return ;
+    inorder1(root -> left ,k,cnt, inorder) ;
+    inorder.emplace_back(root -> data) ; cnt++ ;
+    inorder1(root -> right ,k,cnt, inorder) ;
 }
 
 int kthSmallest(node* root, int k) {
     // Write your code here.
     vector<int> inorder ;
-    inorder1(root , inorder) ;
+    inorder1(root , k , 0 ,inorder) ;
     if(inorder.size() < k) return -1 ;
     return inorder[k-1] ;
     // return inorder.back() ;
@@ -33,7 +35,7 @@ int kthSmallest(node* root, int k) {
 int main()
 {
     node *root = new node(20) ;
-    root -> left = new node(1) ;
+    root -> left = new node(10) ;
     root -> right = new node(30) ;
     cout << kthSmallest(root , 1) << endl ;
     return 0 ; 
