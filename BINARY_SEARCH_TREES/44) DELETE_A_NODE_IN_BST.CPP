@@ -2,13 +2,17 @@
 // PROBLEM LINK --- https://leetcode.com/problems/delete-node-in-a-bst/
 // PROBLEM LINK --- https://practice.geeksforgeeks.org/problems/delete-a-node-from-bst/1
 
-void inorder(Node* root, vector<int>& v) {
-    if (root == NULL) return;
+#include<bits/stdc++.h>
+using namespace std ;
 
-    inorder(root->left, v);
-    v.push_back(root->data);
-    inorder(root->right, v);
-}
+struct Node{
+    int data ;
+    Node *left , *right ;
+    Node(int val){
+        data = val ;
+        left = right = NULL ;
+    }
+} ; 
 
 Node *findLastRight(Node *root){
     if(root -> right == NULL) return root ;
@@ -48,24 +52,19 @@ Node *deleteNode(Node *root, int X) {
     return dummy ;
 }
 
+void inorder(Node *root){
+    if(root == NULL) return ;
+    inorder(root -> left) ;
+    cout << root -> data << " " ;
+    inorder(root -> right) ;
+}
 
 int main() {
-
-    int t;
-    string tc;
-    getline(cin, tc);
-    t = stoi(tc);
-    while (t--) {
-        string s;
-        getline(cin, s);
-        Node* root1 = buildTree(s);
-        getline(cin, s);
-        int k = stoi(s);
-        root1 = deleteNode(root1, k);
-        vector<int> v;
-        inorder(root1, v);
-        for (auto i : v) cout << i << " ";
-        cout << endl;
-    }
+    Node *root = new Node(2) ;
+    root -> left = new Node(1) ;
+    root -> right = new Node(3) ;
+    inorder(root) ; cout << endl ;
+    Node *knnc = deleteNode(root,2) ;
+    inorder(knnc) ; cout << endl ;
     return 0;
 }
