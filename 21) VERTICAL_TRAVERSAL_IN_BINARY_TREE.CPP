@@ -40,6 +40,31 @@ vector<vector<int>> verticalTraversal(node *root){
     return ans ;
 }
 
+vector<int> verticalOrderTraversal(TreeNode<int> *root)
+{
+    map<int,vector<int>> mpp ;
+
+    // USING BFS
+    queue<pair<int,TreeNode<int>*>> q ; 
+    q.push({0,root}) ;
+    while(!q.empty()){
+        int size = q.size() ; 
+        for(int i=0 ; i<size ; i++){
+            auto knnc = q.front() ; q.pop() ; 
+            mpp[knnc.first].push_back(knnc.second -> data) ; 
+
+            if(knnc.second -> left != NULL) q.push({knnc.first-1,knnc.second -> left}) ;
+            if(knnc.second -> right != NULL) q.push({knnc.first+1,knnc.second -> right}) ; 
+        }
+    } 
+
+    vector<int> ans ; 
+    for(auto it:mpp){
+        for(auto vctr:it.second) ans.push_back(vctr) ; 
+    }
+    return ans ; 
+}
+
 int main()
 {
     node* root = new node(1) ;
